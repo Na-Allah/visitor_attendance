@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-2xl font-bold text-indigo-700 mb-4">Organisations & QR Codes</h1>
+
+<div class="space-y-4">
+    {% for org in orgs %}
+        <div class="p-4 bg-white shadow rounded-xl flex items-center justify-between">
+            <span class="font-bold text-lg">{{ org.name }}</span>
+
+            {% if org.qr_code %}
+                <img src="{{ org.qr_code.url }}" class="w-20 h-20 border rounded">
+            {% else %}
+                <span class="text-gray-400">No QR Generated</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
