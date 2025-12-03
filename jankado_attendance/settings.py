@@ -9,7 +9,7 @@ SECRET_KEY = "replace-this"
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jankado.pythonanywhere.com']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -55,6 +55,14 @@ DATABASES = {
     }
 }
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+BASE_URL = "https://jankado.pythonanywhere.com"
+
+
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+

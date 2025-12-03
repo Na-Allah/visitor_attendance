@@ -1,19 +1,80 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1 class="text-2xl font-bold text-indigo-700 mb-4">Organisations & QR Codes</h1>
+<h2 class="text-xl font-bold mb-4">Organisations</h2>
 
-<div class="space-y-4">
+<!-- Desktop Table (Styled Using Uploaded Sample) -->
+<div class="hidden md:block">
+    <div class="bg-white shadow-md rounded-xl overflow-hidden">
+        <table class="min-w-full">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-sm font-semibold">
+                <tr>
+                    <th class="py-4 px-6 text-left">Organisation</th>
+                    <th class="py-4 px-6 text-left">QR Code</th>
+                    <th class="py-4 px-6 text-left">Action</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-700">
+            {% for org in orgs %}
+                <tr class="border-b last:border-none">
+                    <!-- Organisation Name -->
+                    <td class="py-4 px-6">
+                        {{ org.name }}
+                    </td>
+
+                    <!-- QR Code -->
+                    <td class="py-4 px-6">
+                        {% if org.qr_code %}
+                            <img src="{{ org.qr_code.url }}" class="w-20 h-20 rounded-md shadow-sm" alt="QR Code">
+                        {% else %}
+                            <span class="text-red-500 font-medium">No QR Available</span>
+                        {% endif %}
+                    </td>
+
+                    <!-- Action Buttons -->
+                    <td class="py-4 px-6">
+                        {% if org.qr_code %}
+                            <a href="{% url 'generate_qr' org.id %}"
+                               class="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded-full shadow">
+                                Regenerate QR
+                            </a>
+                        {% else %}
+                            <a href="{% url 'generate_qr' org.id %}"
+                               class="inline-block bg-green-600 text-white text-sm px-4 py-2 rounded-full shadow">
+                                Generate QR Code
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- Mobile Cards -->
+<div class="md:hidden space-y-4">
     {% for org in orgs %}
-        <div class="p-4 bg-white shadow rounded-xl flex items-center justify-between">
-            <span class="font-bold text-lg">{{ org.name }}</span>
+    <div class="bg-white p-4 rounded-xl shadow-md">
+        <h3 class="text-lg font-semibold mb-2">{{ org.name }}</h3>
 
-            {% if org.qr_code %}
-                <img src="{{ org.qr_code.url }}" class="w-20 h-20 border rounded">
-            {% else %}
-                <span class="text-gray-400">No QR Generated</span>
-            {% endif %}
-        </div>
+        {% if org.qr_code %}
+            <img src="{{ org.qr_code.url }}" class="w-40 h-40 mx-auto my-4" alt="QR Code">
+            <a href="{% url 'generate_qr' org.id %}"
+               class="block text-center bg-blue-600 text-white py-2 rounded-lg">
+                Regenerate QR
+            </a>
+        {% else %}
+            <div class="text-red-500 my-3">No QR Code Available</div>
+            <a href="{% url 'generate_qr' org.id %}"
+               class="block text-center bg-green-600 text-white py-2 rounded-lg">
+                Generate QR Code
+            </a>
+        {% endif %}
+    </div>
     {% endfor %}
 </div>
 
