@@ -9,9 +9,11 @@ class VisitorForm(forms.ModelForm):
         fields = ["name", "title"]
         widgets = {
             "name": forms.TextInput(attrs={
-                "class": "border p-3 w-full rounded"
+                "class": "border p-3 w-full rounded",
+                "placeholder" : "Enter Your Name"
             }),
             "title": forms.TextInput(attrs={
-                "class": "border p-3 w-full rounded"
+                "class": "border p-3 w-full rounded",
+                "placeholder" : "e.g Manager, Director, Commisioner"
             }),
         }

@@ -1,23 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="bg-white shadow p-6 rounded-xl text-center">
-    <h1 class="text-lg font-bold mb-4 text-indigo-700">
-       Organisation Confirmation Page
+<div class="min-h-screen md:min-h-0 flex flex-col justify-start pt-10">
+
+    <h1 class="text-xl font-bold text-indigo-800 mb-3">
+        Organisation Confirmation
     </h1>
 
-    <p class="mb-4 text-md">
-        Your Welcome please are you coming from the below organisation
+    <p class="text-gray-700 mb-6 capitalize ">
+        you are welcome to jankado digital solution limited  2<sup class="text-xs align-super">nd</sup>
+         anniversary celebration. please confirm that your coming from the organisation below.
     </p>
 
-    <div class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-500">
+    <div class="text-3xl font-bold text-transparent bg-clip-text
+                bg-gradient-to-r from-indigo-900 to-indigo-500 mb-10 capitalize">
         {{ org.name }}
     </div>
 
     <a href="{% url 'enter_details' org.id %}"
-       class="mt-6 block p-3 rounded-xl text-white text-lg font-semibold bg-gradient-to-r from-indigo-900 to-indigo-600">
+       class="w-full p-3 rounded-xl text-white text-lg font-semibold
+              bg-gradient-to-r from-indigo-900 to-indigo-600 text-center">
         Yes, Continue
     </a>
+
 </div>
 
 {% endblock %}

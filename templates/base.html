@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jankado Digital Services</title>
+
+    <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Global Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 text-gray-900">
-    <div class="max-w-xl mx-auto p-6">
-        {% block content %}{% endblock %}
-    </div>
+<body class="text-gray-900 min-h-screen flex flex-col">
+
+    <!-- Mobile Header -->
+    <header class="md:hidden bg-white shadow-sm py-4 px-6">
+        <h1 class="text-xl font-bold text-indigo-700">
+            Jankado Digital Solution
+        </h1>
+    </header>
+
+    <!-- Desktop Header -->
+    <header class="hidden md:flex bg-white shadow-sm py-4 px-10">
+        <h1 class="text-2xl font-bold text-indigo-800 tracking-wide">
+            Jankado Digital Services
+        </h1>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="flex-1 flex justify-center px-4 py-6">
+        <div class="w-full max-w-xl">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-500 text-sm py-4">
+        © {{ now|date:"Y" }} Jankado Digital Services. All Rights Reserved.
+    </footer>
+
 </body>
 </html>

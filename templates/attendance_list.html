@@ -3,18 +3,53 @@
 
 <h2 class="text-xl font-bold mb-4">Visitor Attendance Records</h2>
 
-<div class="space-y-3">
+<!-- Desktop Table -->
+<div class="hidden md:block">
+    <div class="bg-white shadow-md rounded-xl overflow-hidden">
+        <table class="min-w-full">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-sm font-semibold">
+                <tr>
+                    <th class="py-4 px-6 text-left">Name</th>
+                    <th class="py-4 px-6 text-left">Title</th>
+                    <th class="py-4 px-6 text-left">Organisation</th>
+                    <th class="py-4 px-6 text-left">Visited At</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-700 text-sm">
+            {% for visitor in visitors %}
+                <tr class="border-b last:border-none hover:bg-gray-50">
+                    <td class="py-4 px-6">{{ visitor.name }}</td>
+                    <td class="py-4 px-6">{{ visitor.title }}</td>
+                    <td class="py-4 px-6">{{ visitor.organisation.name }}</td>
+                    <td class="py-4 px-6 text-gray-500">{{ visitor.visited_at }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="py-6 text-center text-gray-500">No attendance records yet.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Mobile Cards -->
+<div class="md:hidden space-y-4">
     {% for visitor in visitors %}
-    <div class="bg-white p-4 rounded-lg shadow-md">
-        <div class="font-semibold">{{ visitor.name }}</div>
+    <div class="bg-white p-4 rounded-xl shadow">
+        <div class="text-lg font-semibold">{{ visitor.name }}</div>
         <div class="text-sm text-gray-600">{{ visitor.title }}</div>
-        <div class="text-sm mt-1">
-            Organisation: <span class="font-medium">{{ visitor.organisation.name }}</span>
+
+        <div class="text-sm mt-2">
+            Organisation:
+            <span class="font-medium">{{ visitor.organisation.name }}</span>
         </div>
+
         <div class="text-xs text-gray-500 mt-2">{{ visitor.visited_at }}</div>
     </div>
     {% empty %}
-    <p>No attendance records yet.</p>
+        <p class="text-gray-500">No attendance records yet.</p>
     {% endfor %}
 </div>
 
